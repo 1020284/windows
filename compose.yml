@@ -4,16 +4,22 @@ services:
     container_name: windows
     environment:
       VERSION: "11"
+      RAM_SIZE: "4G"
+      CPU_CORES: "2"
+      DISK_SIZE: "80G"
     devices:
       - /dev/kvm
       - /dev/net/tun
     cap_add:
       - NET_ADMIN
+    mem_limit: 5G
+    cpus: "2.0"
     ports:
       - 8006:8006
       - 3389:3389/tcp
       - 3389:3389/udp
     volumes:
       - ./windows:/storage
+      - /mnt/chromeos/GoogleDrive/MyDrive:/mnt/gdrive
     restart: always
     stop_grace_period: 2m
